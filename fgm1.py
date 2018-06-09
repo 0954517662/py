@@ -726,8 +726,8 @@ def bot(op):
                     userlimit.append(msg.to)
 #------------------1.8-------1.9---------------
             elif "/pendingtag" == msg.text.lower():
-                if msg.to not in userlimit:
-                    group = client.getGroup(to)
+                 if msg.to not in userlimit:
+                    group = client.getGroup(msg.to)
                     nama = [contact.mid for contact in group.invitee]
                     k = len(nama)//100
                     for a in range(k+1):
@@ -738,9 +738,9 @@ def bot(op):
                             b.append({"S":str(s), "E" :str(s+6), "M":i.mid})
                             s += 7
                             txt += u'@Zero \n'
-                         client.sendMessage(to, text=txt, contentMetadata={u'MENTION': json.dumps({'MENTIONEES':b})}, contentType=0)
-                         client.sendMessage(to, "Total {} Mention".format(str(len(nama))))  
-                 	 userlimit.append(msg.to)
+                        client.sendMessage(msg.to, text=txt, contentMetadata={u'MENTION': json.dumps({'MENTIONEES':b})}, contentType=0)
+                        client.sendMessage(msg.to, "Total {} Mention".format(str(len(nama))))
+                        userlimit.append(msg.to)
             elif "/ceksider" == msg.text.lower():
                 if msg.to not in userlimit:
                     client.sendMessage(msg.to,"Cek sider (silent reader)\n\nketik:\n* /reset > /sider")

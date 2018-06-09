@@ -641,13 +641,6 @@ def bot(op):
             elif "takjil" == msg.text.lower():
                 if msg.to not in userlimit:
                     client.sendMessage(msg.to,"Borong semuanya...")
-                    msg.contentType = 7
-                    msg.text = None
-                    msg.contentMetadata = {
-                                         "STKID": "428",
-                                         "STKPKGID": "1",
-                                         "STKVER": "100" }
-                    client.sendMessage(msg)
             elif "ngabuburit" == msg.text.lower():
                 if msg.to not in userlimit:
                     client.sendMessage(msg.to,"Ayoklah jangan wacana doang :v")
@@ -734,64 +727,20 @@ def bot(op):
 #------------------1.8-------1.9---------------
             elif "/pendingtag" == msg.text.lower():
                 if msg.to not in userlimit:
-                 group = client.getGroup(msg.to)
-                 nama = [contact.mid for contact in group.invitee]
-                 nm1, nm2, nm3, nm4, nm5, jml = [], [], [], [], [], len(nama)
-                 if jml <= 100:
-                    summon(msg.to, nama)
-                 if jml > 100 and jml <= 200:
-                    for i in range(0, 99):
-                        nm1 += [nama[i]]
-                    summon(msg.to, nm1)
-                    for j in range(100, len(nama)-1):
-                        nm2 += [nama[j]]
-                    summon(msg.to, nm2)
-                 if jml > 200  and jml <= 300:
-                    for i in range(0, 99):
-                        nm1 += [nama[i]]
-                    summon(msg.to, nm1)
-                    for j in range(100, 199):
-                        nm2 += [nama[j]]
-                    summon(msg.to, nm2)
-                    for k in range(200, len(nama)-1):
-                        nm3 += [nama[k]]
-                    summon(msg.to, nm3)
-                 if jml > 300  and jml <= 400:
-                    for i in range(0, 99):
-                        nm1 += [nama[i]]
-                    summon(msg.to, nm1)
-                    for j in range(100, 199):
-                        nm2 += [nama[j]]
-                    summon(msg.to, nm2)
-                    for k in range(200, 299):
-                        nm3 += [nama[k]]
-                    summon(msg.to, nm3)
-                    for l in range(300, len(nama)-1):
-                        nm4 += [nama[l]]
-                    summon(msg.to, nm4)
-                 if jml > 400  and jml <= 500:
-                    for i in range(0, 99):
-                        nm1 += [nama[i]]
-                    summon(msg.to, nm1)
-                    for j in range(100, 199):
-                        nm2 += [nama[j]]
-                    summon(msg.to, nm2)
-                    for k in range(200, 299):
-                        nm3 += [nama[k]]
-                    summon(msg.to, nm3)
-                    for m in range(300, 399):
-                        nm5 += [nama[k]]
-                    summon(msg.to, nm3)
-                    for l in range(400, len(nama)-1):
-                        nm4 += [nama[l]]
-                    summon(msg.to, nm4)
-                 if jml > 500:
-                     pass
-                 cnt = Message()
-                 cnt.text = "Total: " + str(jml) +  " Members"
-                 cnt.to = msg.to
-                 client.sendMessage(cnt)
-                 userlimit.append(msg.to)
+                    group = client.getGroup(to)
+                    nama = [contact.mid for contact in group.invitee]
+                    k = len(nama)//100
+                    for a in range(k+1):
+                        txt = u''
+                        s=0
+                        b=[]
+                        for i in group.members[a*100 : (a+1)*100]:
+                            b.append({"S":str(s), "E" :str(s+6), "M":i.mid})
+                            s += 7
+                            txt += u'@Zero \n'
+                         client.sendMessage(to, text=txt, contentMetadata={u'MENTION': json.dumps({'MENTIONEES':b})}, contentType=0)
+                         client.sendMessage(to, "Total {} Mention".format(str(len(nama))))  
+                 	 userlimit.append(msg.to)
             elif "/ceksider" == msg.text.lower():
                 if msg.to not in userlimit:
                     client.sendMessage(msg.to,"Cek sider (silent reader)\n\nketik:\n* /reset > /sider")

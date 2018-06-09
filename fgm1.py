@@ -417,7 +417,7 @@ def bot(op):
                         group = client.findGroupByTicket(ticket_id)
                         client.acceptGroupInvitationByTicket(group.id,ticket_id)
                         client.sendMessage(group.id, "Terima kasih telah mengundang ke grup. ketik /key untuk bantuan. gak respon? klik link ini\nbit.ly/fgmtutor\n\nKontak admin:\nhttp://line.me/R/ti/p/~@nya9070u\noa:\nhttp://line.me/R/ti/p/~@wcf4912l")
-        if op.type == 25:
+        if op.type == 26:
             msg = op.message
             if msg.contentType == 13:
                if wait["wblack"] == True:
